@@ -1,0 +1,52 @@
+/* Style for the 360 Drag Indicator */
+.wc360-drag-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the element */
+    width: 80px; /* Adjust size as needed */
+    height: 80px; /* Adjust size as needed */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    border-radius: 50%; /* Make it a circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em; /* Size of the icon */
+    color: #fff; /* Color of the icon */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 10; /* Ensure it's above the image */
+    pointer-events: none; /* Allows clicks to pass through to the 360 viewer */
+    opacity: 0; /* Start hidden for animation */
+    animation: wc360-fade-in-out 3s ease-in-out forwards; /* Animation for fading */
+}
+
+/* Basic drag icon (using a simple arrow and line for simplicity) */
+.wc360-drag-indicator::before {
+    content: '\2194'; /* Unicode for left-right arrow */
+    font-family: Arial, sans-serif; /* Use a font that supports this char */
+    font-weight: bold;
+    display: block;
+    animation: wc360-pulse 1.5s infinite; /* Pulsing effect for the arrow */
+}
+
+/* Keyframe animations */
+@keyframes wc360-fade-in-out {
+    0% { opacity: 0; }
+    20% { opacity: 1; } /* Fade in */
+    80% { opacity: 1; } /* Stay visible */
+    100% { opacity: 0; } /* Fade out */
+}
+
+@keyframes wc360-pulse {
+    0% { transform: scale(0.8); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0.8; }
+}
+
+/* You might need some basic styling for .threesixty if not already present in your style.css */
+/* For example, to ensure it doesn't overflow its parent if dimensions are set dynamically */
+/* .threesixty canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+} */
